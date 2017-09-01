@@ -6,7 +6,7 @@
   "author": "Dai Nguyendo",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
+    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development --open\"",
     "build": "webpack --env production",
     "debug": "node --inspect --debug-brk ./node_modules/webpack/bin/webpack.js",
     "lint:js": "eslint app/ webpack.*.js --cache",
