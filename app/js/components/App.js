@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import 'css/main.scss';
 // Redux Store
 import store from 'js/redux/store';
 
@@ -15,7 +15,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <div>Hello World</div>
+      <div className='test-dev' >Hello World</div>
     );
   }
 

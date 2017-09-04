@@ -157,3 +157,12 @@ exports.clean = (path) => ({
 exports.copy = (paths) => ({
   plugins: [ new CopyWebpackPlugin(paths) ],
 });
+
+exports.autoprefix = () => ({
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => ([
+      require('autoprefixer')(),
+    ]),
+  },
+});

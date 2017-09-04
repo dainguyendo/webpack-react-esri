@@ -9,7 +9,7 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 module.exports = (PATHS) => {
   return merge([
     // Load Sass, extract CSS to file
-    parts.extractCSS({ include: PATHS.app, use: ['css-loader', 'sass-loader' ]}),
+    parts.extractCSS({ include: PATHS.app, use: ['css-loader', parts.autoprefix(), 'sass-loader' ]}),
 
     // Load Images
     parts.loadImages({
