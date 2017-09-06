@@ -6,7 +6,7 @@
   "author": "Dai Nguyendo",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development --open\"",
+    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
     "build": "webpack --env production",
     "debug": "node --inspect --debug-brk ./node_modules/webpack/bin/webpack.js",
     "lint:js": "eslint app/ webpack.*.js --cache",
@@ -16,14 +16,14 @@
     "clean:build": "rm -f build/*"
   },
   "dependencies": {
-    "autoprefixer": "^7.1.3",
-    "postcss-loader": "^2.0.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.3",
+    "postcss-loader": "^2.0.6",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
