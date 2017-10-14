@@ -20,7 +20,8 @@ module.exports = (PATHS) => {
       // Where webpack will write my compiled files
       output: {
         path: PATHS.build,
-        filename: '[name].[chunkhash].js',
+        filename: 'js/[name].[chunkhash].js',
+        libraryTarget: 'amd',
       },
 
       resolve: {
@@ -32,7 +33,7 @@ module.exports = (PATHS) => {
 
       externals: [
         // Handles Dojo/ArcGIS JS API requests
-        function (context, request, callback) {
+        (context, request, callback) => {
           if (/^dojo/.test(request) || /^dojox/.test(request) || /^dijit/.test(request) || /^esri/.test(request)) {
             callback(null, 'amd ' + request);
           } else {
@@ -49,20 +50,9 @@ module.exports = (PATHS) => {
           title: 'Awesome Project',
           template: path.join(PATHS.app, '/index.html'),
           hash: true,
+          inject: false
         }),
 
-        // Externals
-        // new HtmlWebpackExternalsPlugin({
-        //   externals: [
-        //     /*
-        //     {
-        //       module: 'jquery',
-        //       entry: 'https://unpkg.com/jquery@3.2.1/dist/jquery.min.js'
-        //       global: 'jQuery'
-        //     }
-        //     */
-        //   ],
-        // }),
       ],
     },
 
@@ -80,15 +70,5 @@ module.exports = (PATHS) => {
     // Load SVG
     parts.loadSVG({ include: PATHS.app }),
 
-    // Extract Vendor Related Code to it's own bundle
-    parts.extractBundles([
-      {
-        name: 'vendor',
-      },
-      {
-        name: 'manifest',
-        minChunks: Infinity,
-      },
-    ]),
   ]);
 };

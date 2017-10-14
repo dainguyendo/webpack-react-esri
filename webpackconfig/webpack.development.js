@@ -8,6 +8,8 @@ module.exports = (PATHS) => {
       // Customize host/port here - else defaults localhost, 8080
       host: process.env.HOST,
       port: 3000 || process.env.PORT,
+      // Hot Module Replacement
+      hot: true
     }),
 
     // Load Sass Module

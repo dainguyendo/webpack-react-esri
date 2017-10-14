@@ -2,8 +2,37 @@
 <html>
   <head>
     <title>Webpack</title>
+    <!-- Esri CSS -->
+    <link rel='stylesheet' href='https://js.arcgis.com/4.5/esri/css/main.css'>
   </head>
   <body>
+    <!-- React Application Mounting Point -->
     <div id='application-mount'></div>
+    <!-- Place webpack bundle within Dojo Require -->
+    <script>
+      // Utility function to ensure base ends with /
+      var pathUtil = function pathUtil (base, path) {
+        var position = base.length - 1;
+        return !path ?
+          (base.indexOf('/', position) !== position ? base + '/' : base) :
+          (base.indexOf('/', position) !== position ?
+            base + '/' + path :
+            base + path
+          )
+      };
+      var base = pathUtil(location.href.replace(/\/[^/]+$/, ''));
+      var dojoConfig = {
+        parseOnLoad: false,
+        async: true,
+        packages: [
+          { name: 'js', location: pathUtil(base, 'js') }
+        ],
+        deps: ['dojo/domReady!'],
+        callback: function () { require(['<%= htmlWebpackPlugin.files.js %>']); }
+      };
+
+    </script>
+    <!-- Esri JS API -->
+    <script src='//js.arcgis.com/4.5/init.js' async></script>
   </body>
 </html>

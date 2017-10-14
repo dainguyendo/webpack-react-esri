@@ -3,10 +3,13 @@ import 'css/main.scss';
 // Redux Store
 import store from 'js/redux/store';
 
+import Map from 'js/components/Map';
+
 export default class App extends Component {
   constructor () {
     super();
     this.state = store.getState();
+    console.log('Application Initial State', this.state);
   }
 
   componentDidMount () {
@@ -15,7 +18,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <div className='test-dev' >Hello World</div>
+      <Map />
     );
   }
 
