@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { zoomIn } from 'js/redux/actions/mapActions';
+import * as mapActions from 'js/redux/actions/mapActions';
 
 class MapControls extends Component {
   constructor (props) {
@@ -10,11 +10,10 @@ class MapControls extends Component {
   }
 
   render () {
-    console.log(this.state, this.props);
     return (
       <div>
         <div>{`Zoom Level: ${this.props.zoomlevel}`}</div>
-        <div className='btn' onClick={this.props.zooomIn()}>Zoom In</div>
+        <div className='btn' onClick={this.props.actions.zoomIn()}>Zoom In</div>
       </div>
     );
   }
@@ -26,9 +25,13 @@ const mapStateToProps = (state) => ({
 });
 
 // Mapping Redux dispatch as prop that component requires
-const mapDispatchToProps = (dispatch) => ({
-  zooomIn: () => {dispatch(zoomIn());}
-});
+const mapDispatchToProps = (dispatch) => {
+  return { actions: bindActionCreators(mapActions, dispatch) };
+};
+
+// const mapDispatchToProps = (dispatch) => ({
+//   zooomIn: () => {dispatch(zoomIn());}
+// });
 
 // This is a "Smart Component" - therefore needs to connect to our Redux store
 export default connect(mapStateToProps, mapDispatchToProps)(MapControls);

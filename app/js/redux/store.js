@@ -11,14 +11,14 @@ const middleware = [ asyncActions ];
 // Add Logger middleware if not production
 if (process.env.NODE_ENV !== 'production') { middleware.push(logger); }
 
-const persistedState = loadState();
+// const persistedState = loadState();
 
 // Redux store
 const store = createStore(
   // Reducers
   appReducer,
   // Persisted state
-  persistedState,
+  // persistedState,
   // Enhancers
   applyMiddleware(...middleware)
 );
